@@ -5,6 +5,9 @@ from art import *
 import webbrowser
 from platform import system
 
+
+platformD = system()
+
 # FRAME
 
 root = Tk()
@@ -14,9 +17,12 @@ frame.pack()
   
 frame = Frame(root)
 frame.pack(side = BOTTOM)
-
-root.iconbitmap(os.path.dirname(os.path.abspath(__file__))+'/images/2.ico')
-image = PhotoImage(os.path.dirname(os.path.abspath(__file__))+'/images/1.png') 
+if platformD == 'Windows':
+    root.iconbitmap(default='images/2.ico')
+    image = PhotoImage(file='images/1.png') 
+else:
+    root.iconbitmap(os.path.dirname(os.path.abspath(__file__))+'/images/2.ico')
+    image = PhotoImage(os.path.dirname(os.path.abspath(__file__))+'/images/1.png') 
 label = Label(root, image = image)
 label.pack(side= TOP)
 root.title("LBRY TOOLS")
@@ -26,7 +32,6 @@ tprint("\nLBRY TOOLS","rnd-medium")
 
 # FUNCTIONS
 
-platformD = system()
 
 def list_tips ():
     if platformD == 'Windows':
